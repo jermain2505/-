@@ -1,0 +1,503 @@
+
+:root {
+  --sky: #d8eafa;
+  --blue: #527da6;
+  --blue-dark: #365d83;
+  --paper: #fffefa;
+  --shadow: rgba(61, 105, 145, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--blue);
+  font-family: "DM Sans", sans-serif;
+  background: linear-gradient(
+    180deg,
+    #c7e0f5 0%,
+    #eaf4fc 50%,
+    #d2e7f8 100%
+  );
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Langit dan awan */
+
+.sky {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.cloud {
+  position: absolute;
+  width: 190px;
+  height: 65px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow:
+    30px -22px 0 8px rgba(255, 255, 255, 0.75),
+    76px -7px 0 18px rgba(255, 255, 255, 0.75),
+    124px 8px 0 2px rgba(255, 255, 255, 0.75);
+  animation: drift 75s linear infinite;
+}
+
+.cloud-one {
+  top: 15%;
+  left: -350px;
+}
+
+.cloud-two {
+  top: 43%;
+  left: -400px;
+  transform: scale(1.2);
+  animation-delay: -25s;
+  opacity: 0.7;
+}
+
+.cloud-three {
+  top: 75%;
+  left: -300px;
+  transform: scale(0.8);
+  animation-delay: -45s;
+}
+
+.cloud-four {
+  top: 5%;
+  left: -350px;
+  transform: scale(0.65);
+  animation-delay: -12s;
+  opacity: 0.65;
+}
+
+@keyframes drift {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: calc(100vw + 650px) 0;
+  }
+}
+
+/* Navigasi */
+
+.topbar {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand {
+  font-family: "Kalam", cursive;
+  font-size: 1.2rem;
+  color: var(--blue-dark);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 0.84rem;
+  color: #6488ab;
+}
+
+nav a:hover {
+  color: var(--blue-dark);
+}
+
+/* Halaman pembuka */
+
+.intro {
+  text-align: center;
+  max-width: 780px;
+  padding: 58px 24px 38px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #7298bc;
+}
+
+h1 {
+  margin: 16px 0 8px;
+  color: var(--blue-dark);
+  font: 400 clamp(2.5rem, 6vw, 4.8rem) / 1.12 "Kalam", cursive;
+}
+
+h1 span {
+  color: #719cc3;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-weight: 600;
+}
+
+.intro-note {
+  margin: 10px 0 22px;
+  color: #7190ad;
+  font-size: 0.94rem;
+}
+
+.open-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border: 1px solid rgba(87, 130, 170, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--blue-dark);
+  font: 600 0.92rem "DM Sans", sans-serif;
+  box-shadow: 0 8px 22px rgba(69, 111, 151, 0.1);
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.open-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(69, 111, 151, 0.17);
+}
+
+/* Kertas surat */
+
+.letter-wrap {
+  width: min(900px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.letter {
+  position: relative;
+  padding: clamp(28px, 5.5vw, 66px)
+           clamp(24px, 6vw, 76px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 18px 18px 22px 22px;
+  background: rgba(255, 254, 250, 0.96);
+  box-shadow: 0 24px 70px var(--shadow);
+  overflow: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: radial-gradient(#9bb8d0 0.55px, transparent 0.55px);
+  background-size: 7px 7px;
+}
+
+.letter-content {
+  position: relative;
+  z-index: 1;
+}
+
+.letter p {
+  font-size: 1rem;
+  line-height: 1.9;
+  margin: 0 0 20px;
+}
+
+.greeting {
+  font: 400 1.8rem "Kalam", cursive;
+  color: var(--blue-dark);
+}
+
+.letter strong {
+  color: var(--blue-dark);
+}
+
+.tape {
+  position: absolute;
+  top: 12px;
+  left: -18px;
+  width: 84px;
+  height: 25px;
+  background: rgba(158, 199, 231, 0.42);
+  transform: rotate(-28deg);
+}
+
+.heart-doodle {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  font-size: 30px;
+  color: #729dc3;
+}
+
+.flower {
+  position: absolute;
+  right: 25px;
+  top: 100px;
+  color: #8bb3d5;
+  font-size: 2rem;
+  opacity: 0.55;
+}
+
+/* Ayat Alkitab */
+
+.verse {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 18px;
+  align-items: start;
+  margin: 28px 0 30px;
+  padding: 22px 24px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    #e0edf8,
+    #f0f6fc
+  );
+  border: 1px solid white;
+}
+
+.verse-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #a8c9e6;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.verse h2,
+.closing h2 {
+  font: 400 1.65rem "Kalam", cursive;
+  color: var(--blue-dark);
+  margin: 0 0 5px;
+}
+
+.verse h2 span {
+  color: #7da5ca;
+}
+
+.verse p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* Penutup surat */
+
+.closing h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 8px;
+}
+
+.closing h2 span {
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+.signature {
+  font: 400 1.25rem "Kalam", cursive;
+  color: #6b91b6;
+  margin-top: 25px !important;
+}
+
+.paper-plane {
+  position: absolute;
+  right: 26px;
+  bottom: 18px;
+  font-size: 2rem;
+  color: #8ab3d8;
+  transform: rotate(-35deg);
+  animation: plane-float 4s ease-in-out infinite;
+}
+
+@keyframes plane-float {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: -8px -8px;
+  }
+}
+
+/* Pengingat di bagian bawah */
+
+.bottom-note {
+  text-align: center;
+  padding: 48px 20px 24px;
+  color: #6288ad;
+}
+
+.little-heart {
+  font-size: 1.8rem;
+  animation: heartbeat 2.4s ease-in-out infinite;
+}
+
+.bottom-note p {
+  margin: 10px 0 4px;
+  font: 400 1.2rem "Kalam", cursive;
+}
+
+.bottom-note .tiny-note {
+  font: 400 0.82rem "DM Sans", sans-serif;
+  color: #7f9fbc;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  12% { transform: scale(1.12); }
+  24% { transform: scale(1); }
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #7395b5;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+/* Animasi tombol buka surat */
+
+body.closed .letter {
+  opacity: 0;
+  transform: translateY(15px) scale(0.98);
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-width: 0;
+  pointer-events: none;
+}
+
+body.closed .letter-content,
+body.closed .heart-doodle,
+body.closed .tape,
+body.closed .flower,
+body.closed .paper-plane {
+  display: none;
+}
+
+body.closed .letter {
+  overflow: hidden;
+}
+
+/* Tampilan HP */
+
+@media (max-width: 640px) {
+  .topbar {
+    width: calc(100% - 32px);
+    padding: 18px 0;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  nav {
+    gap: 10px;
+    font-size: 0.76rem;
+  }
+
+  .intro {
+    padding: 44px 20px 28px;
+  }
+
+  .eyebrow {
+    font-size: 0.61rem;
+    letter-spacing: 0.1em;
+  }
+
+  .letter-wrap {
+    width: calc(100% - 24px);
+  }
+
+  .letter {
+    border-radius: 15px;
+    padding: 30px 22px 46px;
+  }
+
+  .letter p {
+    font-size: 0.94rem;
+    line-height: 1.82;
+  }
+
+  .greeting {
+    font-size: 1.6rem;
+  }
+
+  .heart-doodle {
+    top: 14px;
+    right: 16px;
+  }
+
+  .flower {
+    right: 18px;
+    top: 80px;
+    font-size: 1.5rem;
+  }
+
+  .verse {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 18px;
+    margin: 24px 0;
+  }
+
+  .verse-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
+
+  .verse h2 {
+    font-size: 1.5rem;
+  }
+
+  .verse p {
+    font-size: 0.9rem;
+  }
+
+  .paper-plane {
+    right: 16px;
+    bottom: 8px;
+    font-size: 1.5rem;
+  }
+
+  .bottom-note {
+    padding-top: 35px;
+  }
+}
+
+/* Menghormati pengaturan aksesibilitas perangkat */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
